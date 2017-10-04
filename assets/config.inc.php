@@ -64,17 +64,17 @@ $hash = "clear";
 # Local password policy
 # This is applied before directory password policy
 # Minimal length
-$pwd_min_length = 9;
+$pwd_min_length = 0;
 # Maximal length
 $pwd_max_length = 0;
 # Minimal lower characters
-$pwd_min_lower = 6;
+$pwd_min_lower = 0;
 # Minimal upper characters
-$pwd_min_upper = 1;
+$pwd_min_upper = 0;
 # Minimal digit characters
-$pwd_min_digit = 1;
+$pwd_min_digit = 0;
 # Minimal special characters
-$pwd_min_special = 1;
+$pwd_min_special = 0;
 # Definition of special characters
 $pwd_special_chars = "^a-zA-Z0-9";
 # Forbidden characters
@@ -87,7 +87,7 @@ $pwd_complexity = 0;
 # always
 # never
 # onerror
-$pwd_show_policy = "onerror";
+$pwd_show_policy = "never";
 # Position of password policy constraints message:
 # above - the form
 # below - the form
@@ -116,7 +116,7 @@ $answer_attribute = "info";
 # Use tokens?
 # true (default)
 # false
-$use_tokens = false;
+$use_tokens = true;
 # Crypt tokens?
 # true (default)
 # false
@@ -128,9 +128,27 @@ $token_lifetime = "3600";
 # LDAP mail attribute
 $mail_attribute = "mail";
 # Who the email should come from
-$mail_from = "admin@example.com";
+$mail_from = "jenkins@scdsldap.accenture.com";
+$mail_from_name = "Self Service Password";
 # Notify users anytime their password is changed
-$notify_on_change = false;
+$notify_on_change = true;
+# PHPMailer configuration (see https://github.com/PHPMailer/PHPMailer)
+$mail_sendmailpath = '/usr/sbin/sendmail';
+$mail_protocol = 'smtp';
+$mail_smtp_debug = 4;
+$mail_debug_format = 'html';
+$mail_smtp_host = 'localhost';
+$mail_smtp_auth = false;
+$mail_smtp_user = '';
+$mail_smtp_pass = '';
+$mail_smtp_port = 25;
+$mail_smtp_timeout = 300;
+$mail_smtp_keepalive = false;
+$mail_smtp_secure = 'tls';
+$mail_contenttype = 'text/plain';
+$mail_charset = 'utf-8';
+$mail_priority = 3;
+$mail_newline = PHP_EOL;
 
 ## SMS
 # Use sms
@@ -193,5 +211,6 @@ $default_action = "change";
 # They can also be defined in lang/ files
 #$messages['passwordchangedextramessage'] = NULL;
 #$messages['changehelpextramessage'] = NULL;
+putenv('LDAPTLS_REQCERT=never');
 
 ?>
